@@ -120,6 +120,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # GPS
+BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
 USE_DEVICE_SPECIFIC_GPS := true
 USE_DEVICE_SPECIFIC_LOC_API := true
 
@@ -128,10 +129,10 @@ MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
+TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-TARGET_USES_ALT_DOZE := true
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_bacon
@@ -191,14 +192,15 @@ WPA_SUPPLICANT_VERSION           := VER_0_8_X
 # Inherit from QC proprietary
 ifneq ($(QCPATH),)
 -include $(QCPATH)/common/msm8974/BoardConfigVendor.mk
+endif
 
 # Bluetooth
 FEATURE_QCRIL_UIM_SAP_SERVER_MODE := true
 
 # QCNE
+BOARD_USES_QCNE := true
 ifeq ($(BOARD_USES_QCNE),true)
 TARGET_LDPRELOAD := libNimsWrap.so
-endif
 endif
 
 -include vendor/oneplus/bacon/BoardConfigVendor.mk

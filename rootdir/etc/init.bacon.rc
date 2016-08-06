@@ -21,7 +21,7 @@ on early-init
     chown system system /sys/kernel/debug/kgsl/proc
 
 on init
-    export LD_SHIM_LIBS /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so
+#    export LD_SHIM_LIBS /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so
 
     # Set permissions for persist partition
     mkdir /persist 0771 system system
@@ -486,6 +486,12 @@ service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     group bluetooth net_bt_admin qcom_diag diag radio
     disabled
     oneshot
+service cnd /system/bin/cnd
+    class late_start
+    socket cnd stream 660 root inet
+service dpmd /system/bin/dpmd
+    class late_start
+    socket dpmd stream 660 root system
 
 on property:bluetooth.hciattach=true
     start hciattach
